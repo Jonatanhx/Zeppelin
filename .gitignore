@@ -5,5 +5,4 @@
 client/.react-router/
 client/build/
 
-**/.pnp.*
 **/node_modules
