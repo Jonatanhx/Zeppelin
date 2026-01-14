@@ -6,3 +6,5 @@ client/.react-router/
 client/build/
 
 **/node_modules
+server/db/dev.db
+server/generated/prisma
