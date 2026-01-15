@@ -1,5 +1,4 @@
 import { Post } from "../../../server/generated/prisma/client";
-import { Welcome } from "../components/posts";
 import type { Route } from "./+types/posts";
 
 export async function loader({ params }: Route.LoaderArgs) {
@@ -17,7 +16,6 @@ export default function Posts({ loaderData }: Route.ComponentProps) {
           <p>{post.content}</p>
         </div>
       ))}
-      <Welcome />
     </div>
   );
 }
