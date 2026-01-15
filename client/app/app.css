@@ -7,7 +7,7 @@
 html,
 body {
   margin: 0px;
-  min-height: 100vh;
+
   @apply bg-white dark:bg-gray-950;
 
   @media (prefers-color-scheme: dark) {

@@ -1,4 +1,4 @@
-import { AppShell, AppShellMain, Burger } from "@mantine/core";
+import { AppShell, Burger, Flex, Image } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import React from "react";
 
@@ -7,17 +7,27 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <AppShell
       padding="md"
-      bg={"#bfff00"}
-      c="#000000"
-      header={{ height: 60 }}
+      header={{ height: 80 }}
+      aside={{ width: 300, breakpoint: "sm", collapsed: { mobile: true } }}
       navbar={{ width: 300, breakpoint: "sm", collapsed: { mobile: !opened } }}
     >
-      <AppShell.Header>
-        <Burger opened={opened} onClick={toggle} hiddenFrom="sm" size="sm" />
-        <div>Logo</div>
+      <AppShell.Header p={6} bg={"indigo"}>
+        <Flex direction={"row"} h="100%">
+          <Burger opened={opened} onClick={toggle} hiddenFrom="sm" size="sm" />
+          <Image
+            src={"../public/logo.png"}
+            h={"100%"}
+            width={"auto"}
+            fit="contain"
+          />
+        </Flex>
       </AppShell.Header>
-      <AppShell.Navbar>Navbar</AppShell.Navbar>
-      <AppShellMain>{children}</AppShellMain>
+
+      <AppShell.Navbar bg={"cyan"} p={0}>
+        Navbar
+      </AppShell.Navbar>
+      <AppShell.Main>{children}</AppShell.Main>
+      <AppShell.Aside bg={"grape"}>Aside</AppShell.Aside>
     </AppShell>
   );
 }
