@@ -8,7 +8,7 @@ export function meta({}: Route.MetaArgs) {
   ];
 }
 
-export default function Index() {
+export default function IndexPage() {
   return (
     <Layout>
       <div>Home page</div>

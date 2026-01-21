@@ -1,33 +1,12 @@
-import { AppShell, Burger, Flex, Image } from "@mantine/core";
-import { useDisclosure } from "@mantine/hooks";
-import React from "react";
+import React, { useState } from "react";
+import AuthedLayout from "./authedLayout";
+import UnauthedLayout from "./unauthedLayout";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
-  const [opened, { toggle }] = useDisclosure();
-  return (
-    <AppShell
-      padding="md"
-      header={{ height: 80 }}
-      aside={{ width: 300, breakpoint: "sm", collapsed: { mobile: true } }}
-      navbar={{ width: 300, breakpoint: "sm", collapsed: { mobile: !opened } }}
-    >
-      <AppShell.Header p={6} bg={"indigo"}>
-        <Flex direction={"row"} h="100%">
-          <Burger opened={opened} onClick={toggle} hiddenFrom="sm" size="sm" />
-          <Image
-            src={"../public/logo.png"}
-            h={"100%"}
-            width={"auto"}
-            fit="contain"
-          />
-        </Flex>
-      </AppShell.Header>
-
-      <AppShell.Navbar bg={"cyan"} p={0}>
-        Navbar
-      </AppShell.Navbar>
-      <AppShell.Main>{children}</AppShell.Main>
-      <AppShell.Aside bg={"grape"}>Aside</AppShell.Aside>
-    </AppShell>
+  const [isAuthed, setIsAuthed] = useState(false);
+  return isAuthed ? (
+    <AuthedLayout>{children}</AuthedLayout>
+  ) : (
+    <UnauthedLayout>{children}</UnauthedLayout>
   );
 }

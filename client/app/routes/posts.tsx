@@ -1,3 +1,4 @@
+import Layout from "app/components/layout";
 import { Post } from "../../../server/generated/prisma/client";
 import type { Route } from "./+types/posts";
 
@@ -7,15 +8,15 @@ export async function loader({ params }: Route.LoaderArgs) {
   return posts;
 }
 
-export default function Posts({ loaderData }: Route.ComponentProps) {
+export default function PostsPage({ loaderData }: Route.ComponentProps) {
   return (
-    <div>
+    <Layout>
       {loaderData.map((post: Post) => (
         <div key={post.id}>
           <p>{post.id}</p>
           <p>{post.content}</p>
         </div>
       ))}
-    </div>
+    </Layout>
   );
 }
