@@ -1,9 +1,10 @@
+import CreateAccountForm from "app/components/forms/createAccountForm";
 import Layout from "app/components/layout";
 
 export default function SignUpPage() {
   return (
     <Layout>
-      <span>Sign up page</span>
+      <CreateAccountForm />
     </Layout>
   );
 }

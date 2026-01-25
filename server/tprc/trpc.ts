@@ -1,10 +1,6 @@
-import { initTRPC } from "@trpc/server";
 import { prisma } from "../prisma/prisma";
-
-const t = initTRPC.create();
-
-export const router = t.router;
-export const publicProcedure = t.procedure;
+import { publicProcedure, router } from "./init";
+import accountRouter from "./routers/account";
 
 const appRouter = router({
   userList: publicProcedure.query(async () => {
@@ -12,6 +8,7 @@ const appRouter = router({
 
     return users;
   }),
+  account: accountRouter,
 });
 
 export type AppRouter = typeof appRouter;
