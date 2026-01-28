@@ -1,11 +1,13 @@
 import { AppShell, Burger, Flex, Image } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
+import { useNavigate } from "react-router";
 
 export default function AuthedLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  let navigate = useNavigate();
   const [opened, { toggle }] = useDisclosure();
   return (
     <AppShell
@@ -22,7 +24,14 @@ export default function AuthedLayout({
             hiddenFrom={"sm"}
             size={"sm"}
           />
-          <Image src={"logo.png"} h={"100%"} width={"auto"} fit={"contain"} />
+          <Image
+            onClick={() => navigate("/")}
+            src={"logo.png"}
+            h={"100%"}
+            width={"auto"}
+            fit={"contain"}
+            style={{ cursor: "pointer" }}
+          />
         </Flex>
       </AppShell.Header>
 
