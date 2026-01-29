@@ -1,19 +1,21 @@
 import { Button, InputError, Stack, TextInput } from "@mantine/core";
 import { useForm } from "@mantine/form";
 import { TRPCClientError } from "@trpc/client";
+import { useAuth } from "app/contexts/authContext";
 import { signInSchema } from "app/schemas";
 import { trpc } from "app/trpc";
-import Cookies from "js-cookie";
 import { zod4Resolver } from "mantine-form-zod-resolver";
 import { useNavigate } from "react-router";
 
 export default function SignInForm() {
   let navigate = useNavigate();
+  const { signIn } = useAuth();
 
   function handleSignin() {
-    Cookies.set("user", form.getValues().email, { expires: 7 });
+    signIn(form.getValues().email);
     navigate("/", { replace: true });
   }
+
   const signInAccount = trpc.account.signInAccount.useMutation({
     onSuccess: () => {
       handleSignin();

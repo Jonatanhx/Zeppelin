@@ -1,5 +1,14 @@
-import { AppShell, Burger, Flex, Image } from "@mantine/core";
+import {
+  AppShell,
+  Burger,
+  Button,
+  Flex,
+  Image,
+  Stack,
+  Text,
+} from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
+import { useAuth } from "app/contexts/authContext";
 import { useNavigate } from "react-router";
 
 export default function AuthedLayout({
@@ -9,6 +18,8 @@ export default function AuthedLayout({
 }) {
   let navigate = useNavigate();
   const [opened, { toggle }] = useDisclosure();
+  const { signOut } = useAuth();
+
   return (
     <AppShell
       padding={"md"}
@@ -34,9 +45,15 @@ export default function AuthedLayout({
           />
         </Flex>
       </AppShell.Header>
-
-      <AppShell.Navbar bg={"cyan"} p={0}>
-        Navbar
+      <AppShell.Navbar bg={"dark"} p={0}>
+        <Flex gap={16} p={16} align={"end"} flex={1} direction={"column"}>
+          <Text c={"white"} fw={600} size={"xl"}>
+            Join the adventure
+          </Text>
+          <Stack>
+            <Button onClick={() => signOut()}>Sign out</Button>
+          </Stack>
+        </Flex>
       </AppShell.Navbar>
       <AppShell.Main>{children}</AppShell.Main>
       <AppShell.Aside bg={"grape"}>aside</AppShell.Aside>
